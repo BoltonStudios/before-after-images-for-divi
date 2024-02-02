@@ -61,7 +61,7 @@ if ( ! class_exists( 'Before_After_Images_For_Divi_Module' ) ) {
             $settings_modal_toggles = array(
                 'general'  => array(
                     'toggles' => array(
-                        'main_content' => esc_html__( 'Before & After Images', 'before-after-images-for-divi' )
+                        'main_content' => esc_html__( 'Before + After Images', 'before-after-images-for-divi' )
                     ),
                 ),
                 'advanced' => array(
@@ -123,7 +123,7 @@ if ( ! class_exists( 'Before_After_Images_For_Divi_Module' ) ) {
             );
             
             // Update the object's inherited property values.
-            $this->name = esc_html__( 'Before & After Images', 'before-after-images-for-divi' );
+            $this->name = esc_html__( 'Before + After Images', 'before-after-images-for-divi' );
             $this->icon = '&';
             $this->settings_modal_toggles = $settings_modal_toggles;
             $this->advanced_fields = $advanced_fields;
