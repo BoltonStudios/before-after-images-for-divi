@@ -1,3 +1,3 @@
-import BeforeAfterImages from './BeforeAfterImages/BeforeAfterImages';
+import HelloWorld from './HelloWorld/HelloWorld';
 
-export default [BeforeAfterImages];
+export default [HelloWorld];

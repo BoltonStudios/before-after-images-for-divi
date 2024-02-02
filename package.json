@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "divi-scripts": "1.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "divi-scripts": "1.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "divi-scripts start",
@@ -27,7 +27,7 @@
     ]
   },
   "cde": {
-    "gettext": "before-after-images-for-divi",
+    "gettext": "baie-before-after-images-for-divi",
     "prefix": "baie"
   }
 }
