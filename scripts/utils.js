@@ -1,3 +1,6 @@
+//
+// Function to do what?
+//
 export function createImageSrcAtSize( image, size ){
 
     // Extract size integers from user input string.
