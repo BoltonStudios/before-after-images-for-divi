@@ -113,7 +113,7 @@ export function getStyles( alignment, sizes, offset ){
  * @param {*} classes 
  * @returns {string} The set of class names.
  */
-export function getOrientationClasses(
+export function getClasses(
     selectedWidth,
     selectedHeight,
     moduleSizes,

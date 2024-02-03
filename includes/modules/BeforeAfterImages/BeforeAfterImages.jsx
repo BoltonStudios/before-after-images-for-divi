@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 
 // Internal Dependencies
 import './style.css';
-import { getImageSrcAtSize, getStyles, getOrientationClasses } from './helpers.js';
+import { getImageSrcAtSize, getStyles, getClasses } from './helpers.js';
 
 class Overlay extends Component{
     render(){
@@ -257,7 +257,7 @@ class BeforeAfterImages extends Component {
              */
             selectedWidth = beforeImageAtSize.width;
             selectedHeight = beforeImageAtSize.height;
-            classes.size = getOrientationClasses( selectedWidth, selectedHeight, moduleSizes );
+            classes.size = getClasses( selectedWidth, selectedHeight, moduleSizes );
 
             /**
              * Update the source URL of the image obect if image sources exist at the selected size.
@@ -320,7 +320,7 @@ class BeforeAfterImages extends Component {
             // No size selected.
             selectedWidth = 376;
             selectedHeight = 225;
-            classes.size = getOrientationClasses(  selectedWidth, selectedHeight, moduleSizes );
+            classes.size = getClasses(  selectedWidth, selectedHeight, moduleSizes );
 
             // Update selectedSizeAttributes.
             selectedSizeAttributes.width = selectedWidth;
@@ -333,7 +333,7 @@ class BeforeAfterImages extends Component {
             // Set width and height variables to the natural dimensions of the image by default.
             selectedWidth = moduleSizes.slider.fullSizeWidth;
             selectedHeight = moduleSizes.slider.fullSizeHeight;
-            classes.size = getOrientationClasses( selectedWidth, selectedHeight, moduleSizes, ['sizeFull'] );
+            classes.size = getClasses( selectedWidth, selectedHeight, moduleSizes, ['sizeFull'] );
 
             /**
              * If the natural width of the image at full size is greater than the width of the module div
