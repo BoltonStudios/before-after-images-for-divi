@@ -3,9 +3,7 @@ import React, { Component, Fragment } from 'react';
 
 // Internal Dependencies
 import './style.css';
-import {getImageSrcAtSize} from '../../../scripts/utils.js';
-import {getStyles} from '../../../scripts/utils.js';
-import {getOrientationClasses} from '.../../../scripts/utils.js';
+import { getImageSrcAtSize, getStyles, getOrientationClasses } from './helpers.js';
 
 class Overlay extends Component{
     render(){
