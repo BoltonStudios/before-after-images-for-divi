@@ -1,6 +1,6 @@
 {
   "name": "before-after-images-for-divi",
-  "version": "0.1.0",
+  "version": "1.4.0",
   "private": true,
   "dependencies": {
     "divi-scripts": "1.0.3",

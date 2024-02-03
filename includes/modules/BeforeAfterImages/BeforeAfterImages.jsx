@@ -3,8 +3,8 @@ import React, { Component, Fragment } from 'react';
 
 // Internal Dependencies
 import './style.css';
-import {createImageSrcAtSize} from '../../../scripts/utils.js';
-import {generateStyles} from '../../../scripts/utils.js';
+import {getImageSrcAtSize} from '../../../scripts/utils.js';
+import {getStyles} from '../../../scripts/utils.js';
 import {getOrientationClasses} from '.../../../scripts/utils.js';
 
 class Overlay extends Component{
@@ -247,8 +247,8 @@ class BeforeAfterImages extends Component {
             // Condition: User selected an image size other than "full size".
             
             // Get image URL at selected size, and extract width and height integers from selected size string.
-            var beforeImageAtSize = createImageSrcAtSize( beforeImage.src, sizeSelected );
-            var afterImageAtSize = createImageSrcAtSize( afterImage.src, sizeSelected );
+            var beforeImageAtSize = getImageSrcAtSize( beforeImage.src, sizeSelected );
+            var afterImageAtSize = getImageSrcAtSize( afterImage.src, sizeSelected );
             
             /**
              * Update the size variables with size integers.
@@ -355,7 +355,7 @@ class BeforeAfterImages extends Component {
         }
 
         // Styles
-        var styles = generateStyles(
+        var styles = getStyles(
             alignment,
             selectedSizeAttributes,
             sliderOffset.int,
