@@ -1,7 +1,12 @@
+/**
+ * Construct the WordPress URL for the image at the 
+ * requested size.
+ * 
+ * @param {*} image 
+ * @param {*} size 
+ * @returns {Object} - imageData
+ */
 export function getImageSrcAtSize( image, size ){
-    //
-    // Function description coming soon.
-    //
 
     // Initialize variables.
     let src = ''
@@ -30,10 +35,15 @@ export function getImageSrcAtSize( image, size ){
     return imageData
 }
 
+/**
+ * Generate inline CSS.
+ * 
+ * @param {*} alignment 
+ * @param {*} sizes 
+ * @param {*} offset 
+ * @returns {Object} - contains inline CSS strings.
+ */
 export function getStyles( alignment, sizes, offset ){
-    //
-    // Function description coming soon.
-    //
 
     // Initialize variables.
     const placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI1NDAiIHZpZXdCb3g9IjAgMCAxMDgwIDU0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0VCRUJFQiIgZD0iTTAgMGgxMDgwdjU0MEgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik00NDUuNjQ5IDU0MGgtOTguOTk1TDE0NC42NDkgMzM3Ljk5NSAwIDQ4Mi42NDR2LTk4Ljk5NWwxMTYuMzY1LTExNi4zNjVjMTUuNjItMTUuNjIgNDAuOTQ3LTE1LjYyIDU2LjU2OCAwTDQ0NS42NSA1NDB6IiBmaWxsLW9wYWNpdHk9Ii4xIiBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgICAgICA8Y2lyY2xlIGZpbGwtb3BhY2l0eT0iLjA1IiBmaWxsPSIjMDAwIiBjeD0iMzMxIiBjeT0iMTQ4IiByPSI3MCIvPgogICAgICAgIDxwYXRoIGQ9Ik0xMDgwIDM3OXYxMTMuMTM3TDcyOC4xNjIgMTQwLjMgMzI4LjQ2MiA1NDBIMjE1LjMyNEw2OTkuODc4IDU1LjQ0NmMxNS42Mi0xNS42MiA0MC45NDgtMTUuNjIgNTYuNTY4IDBMMTA4MCAzNzl6IiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg=='
@@ -89,10 +99,20 @@ export function getStyles( alignment, sizes, offset ){
         handle: handle
     }
 
-    //
+    // Return object with inline CSS strings.
     return styles
 }
 
+/**
+ * Use the before and after image dimensions to 
+ * generate a string of descriptive CSS class names.
+ * 
+ * @param {*} selectedWidth 
+ * @param {*} selectedHeight 
+ * @param {*} moduleSizes 
+ * @param {*} classes 
+ * @returns {string} The set of class names.
+ */
 export function getOrientationClasses(
     selectedWidth,
     selectedHeight,
@@ -100,46 +120,74 @@ export function getOrientationClasses(
     classes = ['']
 ){
 
-    // Initialize a new classes variable by concatenating strings from the classes array.
-    let classes = classes.join ( " " )
+    // Initialize variables.
+    let beforeAspectRatio = moduleSizes.before.naturalHeight / moduleSizes.before.naturalWidth
+    let afterAspectRatio = moduleSizes.after.naturalHeight / moduleSizes.after.naturalWidth
+    let comparativeWidth = 'before-width-at-full-size-is-equal'
+    let comparativeHeight = 'before-height-at-full-size-is-equal'
 
-    const before = {}
-    const after = {}
+    // Initialize a new "classes" variable by concatenating strings from the classes parameter array.
+    let classes = classes.join( " " )
 
-  const beforeOrientation = (moduleSizes.before.naturalWidth >= moduleSizes.before.naturalHeight) ? 'landscape' : 'portrait'
-  const beforeAspectRatio = (beforeOrientation === 'landscape') ? moduleSizes.before.naturalHeight / moduleSizes.before.naturalWidth : moduleSizes.before.naturalWidth / moduleSizes.before.naturalHeight
-  const afterOrientation = (moduleSizes.after.naturalWidth >= moduleSizes.after.naturalHeight) ? 'landscape' : 'portrait'
-  const afterAspectRatio = (afterOrientation === 'landscape') ? moduleSizes.after.naturalHeight / moduleSizes.after.naturalWidth : moduleSizes.after.naturalWidth / moduleSizes.after.naturalHeight
-  const beforeHeightAtFullSizeWidth = Math.trunc(moduleSizes.slider.fullSizeWidth * beforeAspectRatio)
-  const beforeWidthAtFullSizeHeight = Math.trunc(moduleSizes.slider.fullSizeHeight * beforeAspectRatio)
-  const afterHeightAtFullSizeWidth = Math.trunc(moduleSizes.slider.fullSizeWidth * afterAspectRatio)
-  const afterWidthAtFullSizeHeight = Math.trunc(moduleSizes.slider.fullSizeHeight * afterAspectRatio)
+    // If the "before" image's height exceeds its width, i.e., it is a 'portrait' image.
+    if( moduleSizes.before.orientation === 'portrait' ){
 
-  let comparativeWidth = ''
-  if (beforeWidthAtFullSizeHeight > afterWidthAtFullSizeHeight) {
-    comparativeWidth = 'before-width-at-full-size-is-greater'
-  } else if (beforeWidthAtFullSizeHeight < afterWidthAtFullSizeHeight) {
-    comparativeWidth = 'after-width-at-full-size-is-greater'
-  } else {
-    comparativeWidth = 'before-width-at-full-size-is-equal'
-  }
+        // Update the aspect ratio for the "before" image.
+        beforeAspectRatio = moduleSizes.before.naturalWidth / moduleSizes.before.naturalHeight
+    }
 
-  let comparativeHeight = ''
-  if (beforeHeightAtFullSizeWidth > afterHeightAtFullSizeWidth) {
-    comparativeHeight = 'before-height-at-full-size-is-greater'
-  } else if (beforeHeightAtFullSizeWidth < afterHeightAtFullSizeWidth) {
-    comparativeHeight = 'after-height-at-full-size-is-greater'
-  } else {
-    comparativeHeight = 'before-height-at-full-size-is-equal'
-  }
+    // If the "after" image's height exceeds its width, i.e., it is a 'portrait' image.
+    if( moduleSizes.after.orientation === 'portrait' ){
 
-    classes += ' ' + comparativeWidth + ' '
-    classes += ' ' + comparativeHeight + ' '
+        // Update the aspect ratio for the "after" image.
+        afterAspectRatio = moduleSizes.after.naturalWidth / moduleSizes.after.naturalHeight
+    }
+
+    // Use the aspect ratios to calculate the maximum image dimensions.
+    const beforeMaxHeight = Math.trunc(moduleSizes.slider.fullSizeWidth * beforeAspectRatio)
+    const beforeMaxWidth = Math.trunc(moduleSizes.slider.fullSizeHeight * beforeAspectRatio)
+    const afterMaxHeight = Math.trunc(moduleSizes.slider.fullSizeWidth * afterAspectRatio)
+    const afterMaxWidth = Math.trunc(moduleSizes.slider.fullSizeHeight * afterAspectRatio)
+    
+    // If the before max-width is greater than the after max-width...
+    if( beforeMaxWidth > afterMaxWidth ){
+
+        // Override default value.
+        comparativeWidth = 'before-width-at-full-size-is-greater'
+
+    } else if( beforeMaxWidth < afterMaxWidth ){
+
+        // Else, if the after max-width is greater..
+        // Override default.
+        comparativeWidth = 'after-width-at-full-size-is-greater'
+    }
+
+    // If the before max-height is greater than the after max-height...
+    if( beforeMaxHeight > afterMaxHeight ){
+
+        // Override default.
+        comparativeHeight = 'before-height-at-full-size-is-greater'
+
+    } else if( beforeMaxHeight < afterMaxHeight ){
+
+        // Else, if the after max-height is greater..
+        // Override default.
+        comparativeHeight = 'after-height-at-full-size-is-greater'
+    }
+
+    // Construct the String containing CSS class names.
+    classes += ' ' + comparativeWidth + ' ' + comparativeHeight + ' '
     classes += (selectedHeight > selectedWidth) ? ' is-portrait-size ' : ' is-landscape-size '
-    classes += (moduleSizes.before.naturalHeight > moduleSizes.before.naturalWidth) ? ' has-portrait-before-image ' : ' has-landscape-before-image '
-    classes += (moduleSizes.after.naturalHeight > moduleSizes.after.naturalWidth) ? ' has-portrait-after-image ' : ' has-landscape-after-image '
-    classes = classes.replace(/ +(?= )/g, '').trim() // Replace unnecessary spaces.
+    classes += (moduleSizes.before.naturalHeight > moduleSizes.before.naturalWidth)
+                ? ' has-portrait-before-image ' 
+                : ' has-landscape-before-image '
+    classes += (moduleSizes.after.naturalHeight > moduleSizes.after.naturalWidth)
+                ? ' has-portrait-after-image ' 
+                : ' has-landscape-after-image '
+    
+    // Remove unnecessary spaces.
+    classes = classes.replace(/ +(?= )/g, '').trim()
   
-    // Return String containing CSS class names.
+    // Return the String containing CSS class names.
     return classes
 }

@@ -184,13 +184,15 @@ class BeforeAfterImages extends Component {
                 offsetWidth: beforeOffsetWidth,
                 naturalWidth: beforeNaturalWidth,
                 offsetHeight: beforeOffsetHeight,
-                naturalHeight: beforeNaturalHeight
+                naturalHeight: beforeNaturalHeight,
+                orientation: (beforeNaturalWidth >= beforeNaturalHeight) ? 'landscape' : 'portrait'
             },
             after: {
                 offsetWidth: afterOffsetWidth,
                 naturalWidth: afterNaturalWidth,
                 offsetHeight: afterOffsetHeight,
-                naturalHeight: afterNaturalHeight
+                naturalHeight: afterNaturalHeight,
+                orientation: (afterNaturalWidth >= afterNaturalHeight) ? 'landscape' : 'portrait'
             },
             // Set width and height constants for the slider using the dimensions of whichever image is smaller.
             slider: {
